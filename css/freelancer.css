@@ -209,15 +209,15 @@ header .intro-text .skills {
   border-color:#11d4c7;
 }
 @media (min-width: 768px) {
-  .navbar-custom {
-	  
-	  color: white;
+  .navbar-custom;
+    color: white;
     padding: 25px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
   }
   .navbar-custom .navbar-brand {
+	 background:#11d4c7;
     font-size: 2em;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
