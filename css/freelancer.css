@@ -683,7 +683,7 @@ content: "\f017";
   }
    
   .timeline ul li div {
-    width: calc(100vw - 110px);
+    width: calc(100vw - 150px);
   }
    
   .timeline ul li:nth-child(even) div {
