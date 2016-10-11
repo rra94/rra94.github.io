@@ -201,7 +201,7 @@ header .intro-text .skills {
   background: #419796;
 }
 .navbar-custom .navbar-toggle {
-	 color: #11d4c7;
+	background: #11d4c7;
   color: white;
   text-transform: uppercase;
   font-size: 10px;
@@ -688,7 +688,7 @@ content: "\f017";
   }
    
   .timeline ul li div {
-    width: calc(100vw - 100px);
+    width: calc(100vw - 110px);
   }
    
   .timeline ul li:nth-child(even) div {
