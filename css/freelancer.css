@@ -217,7 +217,6 @@ header .intro-text .skills {
     transition: padding 0.3s;
   }
   .navbar-custom .navbar-brand {
-	 background:#11d4c7;
     font-size: 2em;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
