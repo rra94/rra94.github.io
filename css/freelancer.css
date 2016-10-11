@@ -34,12 +34,11 @@ h6 {
   text-transform: uppercase;
   font-weight: 700;
 }
-
 .header-img {
   display: block;
-  margin: 0 auto 20px;
+  margin: -40px auto 20px;
   color: #FC4445;
-  width:50%;
+  width:55%;
 }
 .arrow_box {
 	position: relative;
