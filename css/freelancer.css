@@ -600,7 +600,7 @@ content: "\f017";
 .timeline ul li div {
   position: relative;
   bottom: 0;
-  width: 400px;
+  width: 30%;
   padding: 15px;
   background: #FC4445;
 }
@@ -625,7 +625,7 @@ content: "\f017";
  }
 
 .timeline ul li:nth-child(odd) div {
-  left:45px;
+  left:3%;
 }
 
 .timeline ul li:nth-child(odd) div::before {
@@ -637,7 +637,7 @@ content: "\f017";
  
 
 .timeline ul li:nth-child(even) div {
-  left: -440px;
+  left: -33%;
 }
 
 .timeline ul li:nth-child(even) div::before {
