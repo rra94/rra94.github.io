@@ -35,43 +35,6 @@ h6 {
   color: #FC4445;
   width:55%;
 }
-.arrow_box {
-	position: relative;
-	background: #;
-	border: 3px solid #;
-  border-radius: 15px;
-  font-family: 'coming soon', cursive;
-  font-size: 4em;
-  font-weight:200;
-	color: #FC4445;
-}
-.arrow_box:after, .arrow_box:before {
-	right: 100%;
-	top: 75%;
-	border: solid transparent;
-	
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.arrow_box:after {
-	border-color: rgba(0, 0, 0, 0);
-	border-right-color: white;
-	border-width: 40px;
-	margin-top: -40px;
-	 
-}
-.arrow_box:before {
-	border-color: rgba(226, 78, 66, 0);
-	border-right-color: #;
-	border-width: 44px;
-	margin-top: -44px;
-	
-	  
-}
 hr.star-light,
 hr.star-primary {
   padding: 0;
