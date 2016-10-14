@@ -35,6 +35,15 @@ h6 {
   color: #FC4445;
   width:55%;
 }
+.arrow_box {
+	position: relative;
+	background: #;
+  font-family: 'coming soon', cursive;
+  font-size: 4em;
+  font-weight:200;
+	color: #FC4445;
+}
+
 hr.star-light,
 hr.star-primary {
   padding: 0;
