@@ -1,0 +1,55 @@
+User-agent: *
+Allow: /
+
+# Block AI scrapers from poetry and photography
+User-agent: GPTBot
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: ChatGPT-User
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: Google-Extended
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: CCBot
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: anthropic-ai
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: Claude-Web
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: Bytespider
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: cohere-ai
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: PerplexityBot
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: Amazonbot
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: FacebookBot
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: Meta-ExternalAgent
+Disallow: /blog/
+Disallow: /photography.html
+
+User-agent: Applebot-Extended
+Disallow: /blog/
+Disallow: /photography.html

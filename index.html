@@ -1,564 +1,732 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta description="This is the official Homepage of Rishav Raj Agarwal aka RRA">
-    <meta name="author" content="Rishav Raj Agarwal">
-    <link rel="icon" type="https://i.postimg.cc/7PsCRJw6/favicon.png" href="img/favicon.png" />`
-    <title>Rishav Raj Agarwal</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/freelancer.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Coming+Soon|Open+Sans" rel="stylesheet">
-    <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    <meta name="description" content="Rishav Agarwal — Perception Lead at Gritt Robotics. Computer vision, 6DoF pose estimation, foundation models for robotics.">
+    <meta name="author" content="Rishav Agarwal">
+    <title>Rishav Agarwal</title>
+    <link rel="icon" href="img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f8fa;
+            --surface-2: #eef0f3;
+            --border: #e2e4e8;
+            --text: #1a1a1a;
+            --text-secondary: #555;
+            --accent: #11d4c7;
+            --accent-dark: #419796;
+            --coral: #FC4445;
+            --accent-dim: rgba(17, 212, 199, 0.08);
+            --coral-dim: rgba(252, 68, 69, 0.08);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent-dark); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--coral); }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 2rem;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        nav .nav-links { display: flex; gap: 1.5rem; }
+
+        nav .nav-links a {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover { color: var(--coral); }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-secondary);
+            margin: 4px 0;
+            transition: all 0.3s;
+        }
+
+        /* LAYOUT */
+        .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+        section {
+            padding: 3.5rem 0;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-dark);
+            margin-bottom: 1.25rem;
+        }
+
+        /* HERO */
+        #hero {
+            position: relative;
+            padding-top: calc(56px + 3rem);
+            padding-bottom: 2rem;
+        }
+
+        .hero-row {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-photo {
+            width: 90px;
+            flex-shrink: 0;
+            border-radius: 6px;
+        }
+
+        .hero-text { flex: 1; }
+
+        .hero-text h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-role {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .hero-role strong { color: var(--text); font-weight: 600; }
+
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-dark);
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .hero-links a:hover {
+            color: var(--coral);
+            border-color: var(--coral);
+            background: var(--coral-dim);
+            opacity: 1;
+        }
+
+        /* HOW I THINK */
+        .thesis p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .thesis strong { color: var(--text); font-weight: 600; }
+
+        .thesis-quote {
+            border-left: 3px solid var(--coral);
+            padding-left: 1.25rem;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* HIGHLIGHTS */
+        .highlights {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .highlights li {
+            position: relative;
+            padding: 0.6rem 0 0.6rem 1.25rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .highlights li:last-child { border-bottom: none; }
+
+        .highlights li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.95rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .highlights li strong { color: var(--text); font-weight: 600; }
+
+        .edu-card .highlights { margin-top: 0.5rem; }
+        .edu-card .highlights li {
+            font-size: 0.78rem;
+            padding: 0.4rem 0 0.4rem 1rem;
+            line-height: 1.55;
+        }
+        .edu-card .highlights li::before {
+            top: 0.65rem;
+            width: 5px;
+            height: 5px;
+        }
+        .edu-card .highlights li a { font-size: 0.78rem; }
+
+        .hl-tag {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--coral);
+            background: var(--coral-dim);
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            margin-left: 0.35rem;
+            vertical-align: middle;
+        }
+
+        /* WORK CARDS (projects) */
+        .work-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+
+        .work-card {
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .work-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 2px 12px rgba(17, 212, 199, 0.08);
+        }
+
+        .work-card h3 {
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.01em;
+        }
+
+        .work-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .work-card .tag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--coral);
+            background: var(--coral-dim);
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-source {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* EDUCATION */
+        .edu-grid { display: flex; flex-direction: column; gap: 1rem; }
+
+        .edu-card {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+
+        .edu-card:hover { border-color: var(--accent); }
+
+        .edu-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 6px;
+            object-fit: contain;
+        }
+
+        .logo-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .edu-info { flex: 1; }
+
+        .edu-info h3 {
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .edu-info .edu-degree {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        .edu-info .edu-date {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .edu-info .edu-details {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin-top: 0.4rem;
+        }
+
+        .edu-info .edu-details a {
+            font-size: 0.78rem;
+        }
+
+        .edu-info .highlight-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.4rem 0 0 0;
+        }
+
+        .edu-info .highlight-list li {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            padding-left: 0.9rem;
+            position: relative;
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-info .highlight-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .edu-info .highlight-list li a {
+            font-size: 0.78rem;
+        }
+
+        /* CONTACT / ASIDE */
+        .aside-text {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-row a {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .contact-row a:hover { color: var(--coral); }
+
+        /* FOOTER */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+        }
+
+        /* DIVIDER */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            nav { padding: 0 1rem; }
+
+            .hamburger { display: block; }
+
+            nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.97);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem 1.5rem;
+                gap: 0.75rem;
+            }
+
+            nav .nav-links.open { display: flex; }
+
+            .hero-row { flex-direction: column; text-align: center; gap: 1.25rem; }
+
+            .hero-text h1 { font-size: 1.4rem; }
+
+            .hero-photo { width: 72px; }
+
+            .hero-links { justify-content: center; }
+
+            section { padding: 2.5rem 0; }
+
+            .edu-card {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .edu-logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .work-card { padding: 1rem; }
+
+            .contact-row {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .thesis-quote {
+                font-size: 0.88rem;
+            }
+
+            .highlights li {
+                font-size: 0.82rem;
+            }
+        }
+    </style>
 </head>
+<body>
 
-<body id="page-top" class="index">
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i> </button> <a class="navbar-brand" href="#page-top">Rishav Raj Agarwal</a> </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll"> <a href="#portfolio">Projects</a> </li>
-                    <li class="page-scroll"> <a href="#about">About</a> </li>
-                    <li class="page-scroll"> <a href="https://musings.rishavagarwal.xyz" target="blank">Musings</a> </li>
-                    <li class="page-scroll"> <a href="https://rishavagarwal.xyz/photgraphy" target="blank">Photography</a> </li>
-                    <li class="page-scroll"> <a href="https://scholar.google.ca/citations?user=HJHYhkoAAAAJ&hl" target="blank">Academics</a> </li>
+<nav>
+    <span class="logo">RA</span>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#career">Career</a>
+        <a href="#advising">Advising</a>
+        <a href="#contact">Contact</a>
+        <a href="https://impatientobserver.com/" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:2px"><path d="M19.5 3h-15A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3zM8 17H6V8h2v9zm6 0h-2v-5h2v5zm4 0h-2V6h2v11z"/></svg> Blog</a>
+        <a href="blog/" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:2px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Poetry</a>
+        <a href="photography.html" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:2px"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg> Photos</a>
+    </div>
+</nav>
 
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6"> <img class="img-responsive header-img" src="https://i.postimg.cc/brBsSW3b/profile2.png" alt=""> </div>
-                <div class="col-lg-6">
-                    <div class="arrow_box"> <span>Understands data,<br>befuddled by humans </span></div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Projects</h2>
-                    <hr class="star-primary"> </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">Predicting Financial Trouble using Phone Call Data</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/wTz9jWwG/trouble.png" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">&nbsp;
-                            <br>Cooperative Phonetypes</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/rF9M0SbF/phonoetypes.png"  class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">Hubness in Music Recommendation Systems</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/d0gYPn7n/headphone.png" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">MyObjectify: A 3D printing Community cum Marktplace</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/JhsL2ShG/myobj.png"  class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">&nbsp;
-                            <br>Forecast of Use of BikeShare</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/8kRV9RTB/bike.png" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">Exploring Socio-Economical markers of a good relationship</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/j5NrsNPT/rel.png" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal7" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">Spatial Analysis of Crime in Uttar Pradesh</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/66n9wsfZ/up.png" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal8" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">&nbsp;
-                            <br>Designing a Digital Drafter</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/3J3HTkRM/drafter.png"  class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal9" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">Echo: Educational app to learn Better Pronunciation</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/T16vhwJD/echo.png"" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal10" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">&nbsp;
-                            <br>Symbolic Reasoning and Perception</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/d3jPCY5S/symb.png" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal11" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">&nbsp;
-                            <br>MoodY!</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/kg1Cw7q0/moody.png" class="img-responsive" alt=""> </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal12" class="portfolio-link" data-toggle="modal">
-                        <p class="caps">&nbsp;
-                            <br>Phonetic Spell Checker</p>
-                        <div class="caption">
-                            <div class="caption-content"> <i class="fa fa-search-plus fa-3x"></i> </div>
-                        </div><img src="https://i.postimg.cc/jSdKzD06/spell.png" class="img-responsive" alt=""> </a>
+<div class="container">
+
+    <!-- HERO -->
+    <section id="hero" class="visible">
+        <div class="hero-row">
+            <img class="hero-photo" src="img/profile2.png" alt="Rishav Agarwal">
+            <div class="hero-text">
+                <h1>Rishav Agarwal</h1>
+                <p class="hero-role"><strong>Perception Lead</strong> at Gritt Robotics. Previously Intrinsic (Alphabet), Akasha Imaging (acquired). Computer vision, 6DoF pose estimation, foundation models.</p>
+                <div class="hero-links">
+                    <a href="https://linkedin.com/in/rragarwal" target="_blank" rel="noopener" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                    <a href="https://scholar.google.com/citations?user=HJHYhkoAAAAJ" target="_blank" rel="noopener" title="Google Scholar"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg></a>
+                    <a href="https://github.com/rra94" target="_blank" rel="noopener" title="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+                    <a href="https://impatientobserver.com/" target="_blank" rel="noopener" title="Tech Blog"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 3h-15A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3zM8 17H6V8h2v9zm6 0h-2v-5h2v5zm4 0h-2V6h2v11z"/></svg></a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="success" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Brief History of RRA</h2>
-                    <hr class="star-light"> </div>
+
+    <div class="divider"></div>
+
+    <!-- HOW I THINK -->
+    <section id="about">
+        <div class="section-label">How I Think</div>
+        <div class="thesis">
+            <p>Most robotics companies treat perception as a preprocessing step &mdash; a box that spits out coordinates. I think that's exactly backwards. <strong>Perception is the bottleneck.</strong> It's the thing that determines whether your robot can handle the real world or only works in a cage.</p>
+
+            <div class="thesis-quote">
+                The gap between a demo and a product in robotics is almost always a perception problem. You don't need better planners. You need eyes that actually work.
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="col-lg-12 text-center">
-                        <p> Data Scientist. Aspiring Entrepreneur. Wannabe Quizzer.
-                            <br>I try to understand humans through data and want to build technology that improves our lives.</p>
-                    </div>
-                    <section class="timeline">
-                        <ul>
-                            <li>
-                                <div>
-                                    <time>The Present</time>
-                                    <br>Yesterday is history, tomorrow is a mystery but today is a gift.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2020</time>
-                                    <h6>Master of Mathematics</h6> Finished  <a href="https://uwspace.uwaterloo.ca/handle/10012/16509" target="blank"> thesis </a> in Computer Vison. Wrote a few papers. Attended the DLRL summer school. Won a MITACS Fellowship.  </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2018</time>
-                                    <h6>Moved to Canada</h6>Joined University of Waterloo as a graduate student in CS. </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2017</time>
-                                    <h6> More Treking </h6> Climbed to 14,000ft and lived without internet for 4 days.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2017</time>
-                                    <h6> Published Again</h6> <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0191863" target="blank">Finacial trouble using phone logs </a> got accepted at PlosOne.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2017</time>
-                                    <h6> Exhibited</h6> Photograph exhibited at the 5th Mega Heritage Photo Exhibition hosted at <a href- "https://www.indiahabitat.org/" target="blank"> India Habitat Center, Delhi</a></div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2016</time>
-                                    <h6> Consultant at Exl Services </h6>Got placed on day one during campus placements at <a href="http://www.exlservice.com/" target="blank">EXL services</a>. Currently working with a retail and media conglomerate.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2016</time>
-                                    <h6>Got Published (this time academic) </h6><a href="https://arxiv.org/ftp/arxiv/papers/1609/1609.03442.pdf" target="blank">Cooperative phoneotypes</a> got accepted at <a href="http://ubicomp.org/ubicomp2016/" target="blank">Ubicomp'16</a>. </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2016</time>
-                                    <h6>Research Visitor at Academia Sinica </h6>Invited by <a href="http://www.iis.sinica.edu.tw/~swc/" target="blank"> Dr. SW Chen</a> to Taiwan. This time work on a credit card data and phone logs collected from over a million customers (over 40 GB of Big Data!) Found relationships between financial troubles on Credit Card bills and call based metrics. </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2015</time>
-                                    <h6>Solo trek</h6>Climbed up ~4000m of the Indrahar-Pass trek solo over a period of two days. Got down as well. </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2015</time>
-                                    <h6>Researcher at Rutgers University</h6>Flew to USA to intern at Rutgers University with <a href="https://comminfo.rutgers.edu/directory/vivek-k-singh/index.html" target="blank"> Dr. Vivek Singh</a> on the Rutgers Wellbeing Study.Analysed Spatio-temporal social data captured via mobile phone over three months from 90 students. Found phone based behavioural markers (Phoneotypes) that can explain human cooperation with a very high accuracy. </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2015</time>
-                                    <h6>Cultural Events </h6> As the overall coordinator of the <a href="https://qciitk.wordpress.com/" target="blank">Quiz Club</a>, led the IITK contingent to Nihilanth the inter IIM IIT quiz meet (first team to qualify in four years!) Had won several intra college quizzes.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2014</time>
-                                    <h6>Intro to Machine Learning</h6>Did my first project in Machine Learning, trying to predict the use ofBikeShare in Washington Dc using past use and weather data. Achieved a global rank of 588 (current rank) out of ~4000 submission. </div>
-                            </li>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2014</time>
-                                    <h6>Blog for a Cause </h6>Managed to write an <a href="https://rraexperiences.wordpress.com/2014/01/20/attack-of-the-ungulates/" target="blank">article about cows</a> which won Blog for a Cause, a nationwide social blogging contest.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2014</time>
-                                    <h6>Glorified Spelling Checker</h6>Joined the Creative Cell of the <a href="http://students.iitk.ac.in/snt/" target="blank">Science and Technology Council core team</a>of IIT Kanpur. Manually corrected hundreds of grammatical errors to successfully publish the SnT magazine Scientia (no web version sorry). Also, served as the editor for <a href="https://elsiitk.wordpress.com/2015/01/01/meander-a-literary-publication-by-els/" target="blank">Meander</a> the literary magazine of IIT Kanpur.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2013</time>
-                                    <h6>Entrepreneurship </h6><a href="http://www.myobjectify.com" target="blank">MyObjectify</a> the first ever community cum Marketplace to make 3D printing more accessible in India. I worked on the web-end to create the initial 3D renderer for STL files, helped with the business plan, wrote marketing blogs and ordered lots of pizza. The startup featured among the 10 best start-ups at Disruptit, IIM Ahmedabad.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2013</time>
-                                    <h6>Pitch-ur-Product </h6>Won the third prize in Pitch-ur-Product in E-summit'13, a nationwide Entrepreneurship Fest hosted at IIT Kanpur. The product was a pipe cleaning bot designed over the summers as the part of the Robotics Club at IIT Kanpur.I didn't tighten bolts, just wrote the pitch.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2013</time>
-                                    <h6>Student Mentor </h6>Mentored three first year students for ESC101 which is a first level course in Computing where they're taught basics of C language. Thankfully they passed the course (with above average grades). </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>2012</time>
-                                    <h6> IIT Kanpur</h6>Cleared the IIT Joint Entrance Exam (JEE) with a 99.3 percentile among 500,000+ students which allowed me to study in the prestigious <a href=“ http://www.iitk.ac.in/” target=”blank”>IIT, Kanpur</a> and live on one of the most beautiful campus in India as a Material Science student.</div>
-                            </li>
-                            <li>
-                                <div>
-                                    <time>1994</time>
-                                    <h6> I am Born</h6>Born in the City of Joy, then Calcutta now Kolkata.</div>
-                            </li>
-                        </ul>
-                    </section>
+
+            <p>I've spent my career closing that gap: building foundation models that generalize to unseen objects, writing CUDA kernels that run in single-digit milliseconds, and shipping systems that work in production &mdash; not just in simulation.</p>
+        </div>
+
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CAREER -->
+    <section id="career">
+        <div class="section-label">Career</div>
+        <div class="edu-grid">
+            <div class="edu-card">
+                <img class="edu-logo" src="img/gritt-logo.png" alt="Gritt Robotics">
+                <div class="edu-info">
+                    <h3>Gritt Robotics</h3>
+                    <div class="edu-degree">Perception Lead</div>
+                    <div class="edu-date">2024 &ndash; Present</div>
+                    <div class="edu-details">Leading perception systems for autonomous robotic operations. Own the full vision stack.</div>
+                </div>
+            </div>
+            <div class="edu-card">
+                <img class="edu-logo" src="img/intrinsic-logo.png" alt="Intrinsic (Alphabet)">
+                <div class="edu-info">
+                    <h3>Intrinsic (Alphabet)</h3>
+                    <div class="edu-degree">Senior Software Engineer, Perception</div>
+                    <div class="edu-date">2021 &ndash; 2024</div>
+                    <ul class="highlights">
+                        <li><strong><a href="https://www.intrinsic.ai/blog/posts/enabling-the-next-generation-developer-ecosystem-for-intelligent-robotics" target="_blank" rel="noopener">#1-ranked vision foundation model</a></strong> on the <a href="https://bop.felk.cvut.cz/method_info/1229/" target="_blank" rel="noopener">BOP benchmark</a> for 6DoF pose estimation <span class="hl-tag">ICCV 2025</span></li>
+                        <li><strong><a href="https://github.com/intrinsic-ai/ipd/tree/main/src/intrinsic_ipd" target="_blank" rel="noopener">Open-sourced 100K+ image dataset</a></strong> for pose estimation research, with a Real2Sim data engine using Gaussian splatting <span class="hl-tag">CVPR 2024</span></li>
+                        <li><strong>2 US patents granted</strong> (17/471,063 &amp; 17/393,338) for pose estimation and rendering methods</li>
+                        <li><strong>Demoed perception systems</strong> at major robotics expos <span class="hl-tag">Automate 2024</span> <span class="hl-tag">Automatica 2023</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="edu-card">
+                <img class="edu-logo" src="img/akasha-logo.png" alt="Akasha Imaging">
+                <div class="edu-info">
+                    <h3>Akasha Imaging</h3>
+                    <div class="edu-degree">Software Engineer, Computer Vision</div>
+                    <div class="edu-date">2020 &ndash; 2021</div>
+                    <div class="edu-details">Early engineer at a Bay Area deep imaging startup (<a href="https://news.mit.edu/2022/using-deep-imaging-higher-resolution-0218" target="_blank" rel="noopener">MIT News</a>). Built core vision pipelines. <a href="https://www.intrinsic.ai/blog/posts/mission-momentum" target="_blank" rel="noopener">Acquired by Alphabet</a> &rarr; became Intrinsic.</div>
+                    <ul class="highlight-list">
+                        <li><a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Kalra_Towards_Rotation_Invariance_in_Object_Detection_ICCV_2021_paper.pdf" target="_blank" rel="noopener">Towards Rotation Invariance in Object Detection</a> (ICCV, 2021)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-logo logo-fallback">EXL</div>
+                <div class="edu-info">
+                    <h3>EXL Services</h3>
+                    <div class="edu-degree">Consultant, Analytics</div>
+                    <div class="edu-date">2016 &ndash; 2018</div>
+                    <div class="edu-details">Data science consulting for retail and media clients.</div>
                 </div>
             </div>
         </div>
     </section>
-    <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-6">
-                        <h3>If you need me:</h3>
-                        <p> Call: +91 9621 352233
-                            <br>Email: <a href="mailto:rishavraj.agarwal@gmail.com"  style="color: #ffffff" target="_top">rishavraj.agarwal@gmail.com</a></p>
-                    </div>
-                    <div class="footer-col col-md-6">
-                        <h3>Tangled in the interwebs:</h3>
-                        <ul class="list-inline">
-                            <li> <a href="https://www.flickr.com/photos/152077320@N04/with/37050007155/" target="blank" class="btn-social btn-outline"><strong> f</strong> </a> </li>
-                            <li> <a href="https://in.linkedin.com/in/rishav-agarwal-6b787280" class="btn-social btn-outline" target="blank"><strong> in </strong> </a> </li>
-                            <li> <a href="https://www.goodreads.com/user/show/17297252-rishav-agarwal" class="btn-social btn-outline" target="blank"><strong> g </strong></a> </li>
-                        </ul>
-                    </div>
+
+    <div class="divider"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-label">Open Source</div>
+        <div class="work-grid">
+            <div class="work-card">
+                <span class="tag">Python &middot; PyTorch</span>
+                <h3><a href="https://github.com/arashwan/matrixnet" target="_blank" rel="noopener">MatrixNet</a></h3>
+                <p>Matrix-based anchor architecture for object detection. Rethinks how feature pyramids handle scale and aspect ratio variation. <a href="https://arxiv.org/pdf/2001.03194" target="_blank" rel="noopener">Paper &rarr;</a></p>
+            </div>
+        </div>
+        <p style="margin-top: 1rem;">
+            <a href="https://github.com/rra94" target="_blank" rel="noopener" style="font-size: 0.85rem; font-weight: 500;">View all on GitHub &rarr;</a>
+        </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="section-label">Education</div>
+        <div class="edu-grid">
+            <div class="edu-card">
+                <img class="edu-logo" src="img/waterloo-logo.svg" alt="University of Waterloo">
+                <div class="edu-info">
+                    <h3>University of Waterloo</h3>
+                    <div class="edu-degree">Master of Mathematics (MMath), Computer Science</div>
+                    <div class="edu-date">2018 &ndash; 2020</div>
+                    <div class="edu-details"><a href="https://uwspace.uwaterloo.ca/bitstreams/1d0bba29-5f5e-42a2-a41c-4f239fd27fa1/download" target="_blank" rel="noopener">Thesis</a> in computer vision &amp; object detection. Reviewer for CVPR, AAAI, BMVC, NeurIPS, PLOS ONE. <a href="https://www.mitacs.ca/our-programs/accelerate-fellowship/" target="_blank" rel="noopener">Mitacs</a> Accelerate Fellow. CIFAR DLRL Summer School 2020.</div>
+                    <ul class="highlight-list">
+                        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9993801/pdf/main.pdf" target="_blank" rel="noopener">Do More Stringent Policies Reduce Daily COVID-19 Case Counts? Evidence from Canadian Provinces</a> (Economic Analysis and Policy, 2023)</li>
+
+                        <li><a href="https://link.springer.com/chapter/10.1007/978-3-030-47358-7_13" target="_blank" rel="noopener">Sensitivity to Risk Profiles of Users When Developing AI Systems</a> (LNCS/LNAI, 2020)</li>
+                        <li><a href="https://dl.acm.org/doi/10.1145/3472749.3474792" target="_blank" rel="noopener">PocketView: Through-Fabric Information Displays</a> (UIST, 2021)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="edu-card">
+                <img class="edu-logo" src="img/iitk-logo.svg" alt="IIT Kanpur">
+                <div class="edu-info">
+                    <h3>Indian Institute of Technology, Kanpur</h3>
+                    <div class="edu-degree">B.Tech, Materials Science &amp; Engineering</div>
+                    <div class="edu-date">2012 &ndash; 2016</div>
+                    <div class="edu-details">Research intern at Rutgers University &amp; Academia Sinica, Taiwan. Published at UbiComp 2016 and PLOS ONE. Quiz Club coordinator.</div>
+                    <ul class="highlight-list">
+                        <li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0191863" target="_blank" rel="noopener">Predicting Financial Trouble Using Call Data — On Social Capital, Phone Logs, and Financial Trouble</a> (PLOS ONE, 2018)</li>
+                        <li><a href="https://dl.acm.org/doi/10.1145/2971648.2971755" target="_blank" rel="noopener">Cooperative Phoneotypes: Exploring Phone-Based Behavioral Markers of Cooperation</a> (UbiComp, 2016)</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12"> <strong> Developed on a lazy Sunday &copy; RRA 2019</strong> </div>
-                </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FEATURED WORK -->
+    <section id="featured-work">
+        <div class="section-label">Featured Work</div>
+        <div class="work-grid">
+            <div class="work-card">
+                <h3><a href="https://news.mit.edu/2022/using-deep-imaging-higher-resolution-0218" target="_blank" rel="noopener">Using Deep Imaging for Higher Resolution</a></h3>
+                <p class="news-source">MIT News, 2022</p>
+            </div>
+            <div class="work-card">
+                <h3><a href="https://uwaterloo.ca/math/news/computer-science-researchers-developing-through-fabric" target="_blank" rel="noopener">Computer Science Researchers Developing Through-Fabric Display Technology</a></h3>
+                <p class="news-source">University of Waterloo, 2021</p>
             </div>
         </div>
-    </footer>
-    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-        <a class="btn btn-primary" href="#page-top"> <i class="fa fa-chevron-up"></i> </a>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Predicting Financial Trouble using Phone Call Data</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/wTz9jWwG/trouble.png" class="img-responsive img-centered" alt="">
-                            <p>I was invited by <a href="http://www.iis.sinica.edu.tw/~swc" target="blank">Dr Sheng-Wei "Kuan-Ta" Chen </a> of Academia Sinica, Taiwan to conduct research in his Networks and Multimedia Labs. The project was to find behavioural markers that can indicate financial trouble for an individual.
-                                <br>
-                                <br>
-                                <h4> Abstract</h4>Financial outcomes for individuals has been traditionally determined by past payment history. Recently, researchers have used methods like time series and machine learning. Again, socio-economic status has also been inferred from mobile phone activity data and some even found interconnection between social and mobile features and spending behaviour. We decided to explore the possibility to predict financial trouble using phone activity data.
-                                <h4> Methodology and Resuts</h4>After doing a careful initial analysis and purging redundant users we ended with ~30,000 people who had trouble in at least one month over the financial year. The data however was naturally imbalanced so we had to use balancing techniques like SMOTE. We applied several classification techniques like GBM, SVM, Naïve Bayes, and created a model that can predict financial trouble in the upcoming 3 months using just 9 months of previous data with a ~0.75 AUCROC and 73 % Accuracy. We also found consistent results using different slots in the year. The metrics involved were a combination of both Call based and Transaction based features.
-                                <h4> Conclusion</h4>Thus, our work is unique as we diverge from the traditional credit rating techniques that rely heavily on past credit scores. We propose a hybrid method that can help people who do not have an established credit history get credit cards and eventually loans. Results published in PlosOne.
-                                <h4> Why was this fun?</h4> Working on over 40 gb of combined data was taxing and taught me patience, thankfully I had the support of a superfast workstation and talented colleagues. This also gave me a wonderful opportunity to explore and appreciate the amazing culture of Taiwan and ride the fastest elevator in the world installed at Taipei 101.</p>
-                            <ul class="list-inline item-details"> Follow the links for more details:
-                                <li> <strong><a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0191863" target="blank">Paper</a> </strong> </li>
-                                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ELSEWHERE -->
+    <section id="elsewhere">
+        <div class="section-label">Elsewhere</div>
+        <ul class="highlights">
+            <li><a href="blog/" target="_blank" rel="noopener">Poetry</a> &mdash; I write poems, sometimes about code, mostly not</li>
+            <li><a href="photography.html" target="_blank" rel="noopener">Photography</a> &mdash; exhibited at 5th Mega Heritage Photo Exhibition, India Habitat Center, New Delhi (2016). Featured in iPhoneLife Magazine and "100 Phone Photographers to Follow on Instagram"</li>
+            <li><a href="https://www.instagram.com/200dishes" target="_blank" rel="noopener">200dishes</a> &mdash; cooked one dish from every country on earth</li>
+
+        </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ADVISING -->
+    <section id="advising">
+        <div class="section-label">Advising & Investing</div>
+        <p class="aside-text">I occasionally advise and angel invest in early-stage robotics and applied ML companies. If you're building something interesting, <a href="https://linkedin.com/in/rragarwal" target="_blank" rel="noopener">reach out</a>.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-label">Contact</div>
+        <div class="contact-row">
+            <a href="https://linkedin.com/in/rragarwal" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=HJHYhkoAAAAJ" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>Scholar</a>
+            <a href="https://github.com/rra94" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>GitHub</a>
+            <a href="https://impatientobserver.com/" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M19.5 3h-15A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3zM8 17H6V8h2v9zm6 0h-2v-5h2v5zm4 0h-2V6h2v11z"/></svg>Blog</a>
         </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>&nbsp;<br>Cooperative Phonetypes</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/rF9M0SbF/phonoetypes.png" class="img-responsive img-centered" alt="">
-                            <p>In the summers of 2015, <a href="https://comminfo.rutgers.edu/directory/vivek-k-singh/index.html" target="blank"> Dr Vivek K Singh </a>of Rutgers university gave me an opportunity to intern in his lab. The project was to understand why humans cooperate.
-                                <h4> Abstract</h4>Cooperation is a fundamental human concept studied across multiple social and biological disciplines. Traditional methods for eliciting an individual’s propensity to cooperate have included surveys and laboratory experiments and multiple such studies have connected an individual’s cooperation level with her social behavior. We describe anovel approach to model an individual’s cooperation level based on her phoneotype i.e. a composite of an individual’s traits as observable via a mobile phone. This phone sensing based method can potentially complement surveys, thus providing a cheaper, faster, automated method for generating insights into cooperation levels of users. Based on a 10-week field study involving 54 participants, we report that: (1) multiple phone-based signals were significantly associated with participant’s cooperation attitudes; and (2) combining phone-based signals yielded a predictive model with AUCROC of 0.945 that performed significantly better than acomparable demography-based model at predicting individual cooperation propensities. The results pave the wayfor individuals and organizations to identify more cooperative peers in personal, social, and commerce related settings.
-                                <h4>Why this was fun?</h4>This was the first time I had dedicated time wholly to research. The intern gave me perspective about choosing research as a career option. It highlighted the perks of conducting research, i.e. being able to do things at your own pace and read the topics you like. I tasted bitter rejection as the paper got rejected at a CHI conference and also felt the euphoria of acceptance at Ubicomp’16. Thus, writing the paper taught me perseverance and I learned about the importance of being able to deliver a convincing argument in written words
-                                <br>
-                                <br>Also, I fell in love with New York City.</p>
-                            <ul class="list-inline item-details"> Follow the links for more details:
-                                <li> <strong><a href="https://arxiv.org/ftp/arxiv/papers/1609/1609.03442.pdf" target="blank">Paper</a> </strong> </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Hubness in Music Recommendation Systems</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/d0gYPn7n/headphone.png" class="img-responsive img-centered" alt="">
-                            <p>I hate it when websites play the same song again and again and again. So, my friend Saurav Prakash and I tried to create a better music recommendation system that recommends niche songs as often as the popular ones.We tested out system on the <a href="http://labrosa.ee.columbia.edu/millionsong/" target="blank"> million song dataset. </a>
-                                <h4>Abstract</h4>We study the problem of hubness in the high dimensional data spaces. Recently been attributed as a curse of dimensionality, hubness tends to make the nearest neighbour relations asymmetric. Due to hubness, certain objects tend to be present in the nearest neighbour lists of many other objects, but there are only a finite number of objects that are present in the nearest neighbour lists of the hub objects. As a result, the recommendation systems that are based on the similarity between songs recommend the hub elements repeatedly, while a large number of songs, ‘orphans’, are never recommended. Through proper scaling methods, the neighbour relations can be made more symmetric causing a reduction in the hubness.
-                                <h4>Methodology</h4><img src="http://res.cloudinary.com/dbxnz90bc/image/upload/v1476507029/music_qmn2ub.png" class="img-responsive img-centered" alt="">
-                                <h4>Conclusion</h4>Overall, the best performance was obtained when the distance matrix was constructed using the Pearson distance measure and using Local Scaling—for the 10,000 songs dataset, the number ofsongs that were getting recommend was ~99%.
-                                <h4>Why was this fun?</h4>I love Spotify especially their Discover Weekly mix. So, I wanted to understand how recommender systems work and how I can improve one. Making the poster on Latex and presenting it to professors and peers was an enriching experience. </p>
-                            <ul class="list-inline item-details">
-                                <li>Follow the link for more details: <strong><a href="contents/musicposter.pdf" target="blank">Poster</a> </strong> </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body"> <a href="http://www.myobjectify.com" target='_blank'><h2>MyObjectify: A 3D printing Community cum Marktplace</h2></a>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/JhsL2ShG/myobj.png" class="img-responsive img-centered" alt="">
-                            <p>MyObjectify is the first online 3D printing community in India which aims to bridge the gap between talented designers and consumers so as to allow them to break away from the limitations posed by conventional manufacturing.
-                                <br>
-                                <br>We believe that this can be accomplished by providing a platform where users can interact and iterate on the 3D design and then harness the power of additive manufacturing and rapid prototyping services, particularly 3D printing, to bring their 3D designs to life. </p>
-                            <h3>Why was this fun?</h3>
-                            <p> The two years I spent with MyObjectify were awesome. The layer by layer manufacturing technology never ceased to amaze me. The late night debugging sessions and qutiodian struggle of running a startup perfectly epitomizes my time at IIT Kanpur.
-                                <br><img src="http://res.cloudinary.com/dbxnz90bc/image/upload/v1476507030/myobj3_xrdlng.jpg" class="img-responsive img-centered" alt=""> P.S. We also opened up a Mini ME stall at Mumbai ComicCon where we used a Kinect to 3D scan people’s heads and 3D print a miniature version of them.</p>
-                            <ul class="list-inline item-details">
-                                <li> <strong><a href="http://www.myobjectify.com" target="blank">Website</a> </strong> </li>
-                                <li> <strong><a href="https://github.com/rra94/3dStlRenderer" target="blank">Initial Renderer</a> </strong> </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Forecast of Use of BikeShare</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/8kRV9RTB/bike.png"  class="img-responsive img-centered" alt="">
-                            <p>Bicycle sharing programs have emerged as a global trend as an affordable, convenient, and sustainable travel option with various benefits. In this project, I tried different Machine Learning techniques on the <a href="https://www.kaggle.com/c/bike-sharing-demand" target="blank">Kaggle problem: Forecast use of a city bikeshare system. </a>I used historical usage patterns with weather data in orderto forecast bike rental demand in the Capital Bikeshare program in Washington, DC. I did project as a part of the Machine Learning techniques course and this was my first project in ML. I learned how to do basic data analysis, do a feature selection and implement standard prediction techniques like Random Forest, Logistic Regression, Mixture Models and SVM.
-                                <br>
-                                <br>Also, achieving a closing global rank of 588 (dropped 54 places) out of ~4000 entries for our submission on Kaggle was the cherry on the cake.</p>
-                            <ul class="list-inline item-details">
-                                <li>Follow the link for more details: <strong><a href="contents/bike.pdf" target="blank">Report</a> </strong> </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Socio-Economical markers of a good relationship</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/j5NrsNPT/rel.png" class="img-responsive img-centered" alt="">
-                            <p>Almost at the end of my IIT Kanpur journey I decided to find the meaning of agood life under the mentorship of <a href="http://www.iitk.ac.in/new/debayan-pakrashi" target=”blank”>Dr Debayan Pakrashi</a> of the Economics Department.
-                                <br>
-                                <br>The aim of this project was to examine the markers of a good life in from of life satisfaction, relationship satisfaction, job satisfaction and satisfaction with children. Then try to see which variables affect these markers with a focus on heath and personality. I used the 2013 edition of the <a href="https://www.melbourneinstitute.com/hilda/" target=“blank”>HILDA dataset</a> which has an average of 17000 individuals collected over a period of 12 years. After identifying key socio-economic variables, I used a fixed effect regression model to find the importance of each variable. Many variables like job stress, # previous relationships, #children appeared to have a significant impact on life satisfaction while demographic variables like income, household type didn’t feature.
-                                <br>
-                                <br>This project was completely different from the CS oriented projects I had done and introduced me to a different flavour of research and methodology. </p>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Spatial Analysis of Crime in Uttar Pradesh</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/66n9wsfZ/up.png"  class="img-responsive img-centered" alt="">
-                            <p>Intrigued by the high crime rate in Uttar pradesh, I pursue a data centric approach to find spatial connections on a district level.
-                                <h4>Abstract</h4>Uttar Pradesh (UP), the most populous state in India has been historically famous for its highcrime rate and lawlessness. In a 2012 survey, UP had been termed as the one of the "worststates" in India in terms of law and order by the National Crime Records Bureau (NCRB). UPis also notorious for its illegal arms trafficking and several illegal arms factories exist. I aim to findthe determinants of crime in UP and explore whether spatial patterns exist in the distribution ofcrime over the state using a Spatial Model for cross-sectional data and thus highlight major crime "hotspots" in terms of regional proximity.
-                                <h4>Methodology</h4><img src="http://res.cloudinary.com/dbxnz90bc/image/upload/v1476507031/spatial_krpphr.png" class="img-responsive img-centered" alt="">
-                                <h4>Conclusion</h4>After applying the various tests I concluded that there is low spatial correlation withrespect to crime in UP. The crime rate is aptly explained by the socio-economic variables like unemployment and literacy in the OLS but since data collection isonly possible in urban cities we might not get the entire picture of crime in UP.</p>
-                            <ul class="list-inline item-details">
-                                <li>follow the link for more details. <strong><a href="contents/spatial.pdf" target="blank">Report</a> </strong> </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal8" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Designing a Digital Drafter</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/3J3HTkRM/drafter.png" " class="img-responsive img-centered" alt="">
-                            <p>TA 101 was a first level Engineering Drawing course which was compulsory for all first year students at IITK. Armed with cumbersome mini-drafters, we had to draw orthographic projections of ellipses across sheets of white paper. Needless to say, the whole exercise was enervating. So, during the summers of 2013 I decided to unburden the freshers by designing a cool new digital drafter as part of the Des633A , New Product design course.
-                                <br>
-                                <br>
-                                <br>This introduced me to the heuristics of a new product design form ideation to prototyping. I learned about Quality Function Deployment (QFD) method to model the product according to user needs and the doing a STP to market the said product.
-                                <br>
-                                <br>
-                                <br>We even fabricated (and destroyed) a cool prototype for our drafter using an aurdino.</p>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal9" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Echo: Educational app to learn Better Pronunciation</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/T16vhwJD/echo.png" class="img-responsive img-centered" alt="">
-                            <p>Echo an educational app to help children master English faster.It randomly chooses a word from database and displays it in the form of flash cards on the screen.It allows users to record their pronunciation which is assessed using tools like Google Speech2Text API and Chromaprint library for audio fingerprinting. The user can also listen to the correct pronunciation of that word from our database directly from the web app interface.
-                                <br>
-                                <br>
-                                <br>This was our submission for the Eduvate App-a-thon.</p>
-                            <ul class="list-inline item-details">
-                                <li>follow the link for more details: <strong><a href="https://github.com/apeeyush/Eduvate" target="blank">Github</a> </strong> </li>
-                                <li>Date: <strong><a href="http://eduvate.herokuapp.com/" target="blank">Website Demo</a> </strong> </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal10" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"> </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Symbolic Reasoning and Perception</h2>
-                            <hr class="star-primary"> <img src="https://i.postimg.cc/d3jPCY5S/symb.png" class="img-responsive img-centered" alt="">
-                            <p>The aim of this project was to test the paper <a href="http://journal.frontiersin.org/article/10.3389/fpsyg.2014.00275/full" target=”blank”> PERCEPTUAL ACCOUNT OF SYMBOLIC REASON, </a> by Landy et al, which propsed that symbols may act as targets for powerful perceptual and sensorimotor systemsI built a JavaScript application to replicate the experiments proposed in the paper and tested it on 20 first year students of IIT Kanpur. The subjects were asked to do simple calculations like
-                                <h4>8=2+3*y </h4 ></p><p>Their response and response time was recorded. No personal data was collected.<br><br>We found some consistency with the original paper and our work was appreciated by Dr Landy himself. </p><ul class="list-inline item-details"> <li>Follow the link for more details: <strong><a href="contents/symbl.pdf" target="blank">poster</a> </strong> </li></ul> <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button> </div></div></div></div></div></div><div class="portfolio-modal modal fade" id="portfolioModal11" tabindex="-1" role="dialog" aria-hidden="true"> <div class="modal-content"> <div class="close-modal" data-dismiss="modal"> <div class="lr"> <div class="rl"> </div></div></div><div class="container"> <div class="row"> <div class="col-lg-8 col-lg-offset-2"> <div class="modal-body"> <h2>MoodY! Recommends music based on mood</h2> <hr class="star-primary"> <img src="http://res.cloudinary.com/dbxnz90bc/image/upload/v1476507029/moody_nnosna.png" class="img-responsive img-centered" alt=""> <p> This application analyse the moods of a person over a certain period of time based on her updates on any social media platform. It will then plot a graph of the person’s mood swings against time (the graph was made using YUI). It was also used to suggest music and images to a person according to his/her mood in the Yahoo HackU competition. <br><br><br>This was made during a 24 hour hackathon by four sophomores high on Redbull. </p><ul class="list-inline item-details"> <li>Follow the link for more details: <strong><a href="https://github.com/apeeyush/MoodY-Trudes" target="blank">Github</a> </strong> </li></ul> <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button> </div></div></div></div></div></div><div class="portfolio-modal modal fade" id="portfolioModal12" tabindex="-1" role="dialog" aria-hidden="true"> <div class="modal-content"> <div class="close-modal" data-dismiss="modal"> <div class="lr"> <div class="rl"> </div></div></div><div class="container"> <div class="row"> <div class="col-lg-8 col-lg-offset-2"> <div class="modal-body"> <h2>Phonetic Spell Checker</h2> <hr class="star-primary"> <img src="http://res.cloudinary.com/dbxnz90bc/image/upload/v1476507030/spell_pxkmpi.png" class="img-responsive img-centered" alt=""> <p>This was my “hello world” project at IIT Kanpur. People often reduce words to their phonetic equivalent non-dictionary words.So book becomes buk, and great becomes gr8. We tried to build a phonetic spell checker to correct such typographical errors, often made during texting.<br><br><br>We used the Metaphone algorithm to generate a list of close sounding words and then used the python NLTK library to implement N gram to find the closest dictionary words and suggest it. <br><br><br>P.S. I thought Python was a snake before embarking on this one.</p><ul class="list-inline item-details"> <li>Follow the link for more details: <strong><a href="https://github.com/rra94/SpellNazi" target="blank">Github</a> </strong> </li></ul> <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button> </div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script> <script>function isElementInViewport(e){var t=e.getBoundingClientRect();return t.top>=0&&t.left>=0&&t.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&t.right<=(window.innerWidth||document.documentElement.clientWidth)}function callbackFunc(){for(var e=0;e<items.length;e++)isElementInViewport(items[e])&&items[e].classList.add("in-view")}var items=document.querySelectorAll(".timeline li");window.addEventListener("load",callbackFunc),window.addEventListener("scroll",callbackFunc); </script> </body></html>
+    </section>
+
+</div>
+
+<footer>
+    <div class="container">&copy; 2026 Rishav Agarwal</div>
+</footer>
+
+<script>
+// ─── Scroll reveal ───
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('section:not(#hero)').forEach(s => observer.observe(s));
+
+// ─── Mobile nav ───
+document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+});
+</script>
+
+</body>
+</html>
